@@ -12,9 +12,7 @@ License: GNU General Public License v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: uabwp
 Tags: block-patterns, block-styles, custom-colors, custom-logo, custom-menu, editor-style, full-site-editing, one-column, template-editing, threaded-comments, translation-ready, wide-blocks
-
-/* Defaults
----------------------------------------- */
+*/
 
 /* Defaults
 ---------------------------------------- */
@@ -27,6 +25,15 @@ Tags: block-patterns, block-styles, custom-colors, custom-logo, custom-menu, edi
 
 html {
 	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "aktiv-grotesk", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "aktiv-grotesk", sans-serif;
+	font-weight: var(--wp--custom--font-weight--bold);
 }
 
 a,
@@ -53,7 +60,7 @@ th {
 }
 
 mark {
-	background: linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--primary) 100%);
+	background: linear-gradient(90deg, var(--wp--preset--color--uab-green) 0%, var(--wp--preset--color--uab-green) 100%);
 	background-position: 0 85%;
 	background-repeat: repeat-x;
 	background-size: 100% 15%;
@@ -68,7 +75,7 @@ textarea {
 	border: 1px solid var(--wp--preset--color--contrast);
 	border-radius: 0;
 	color: var(--wp--preset--color--contrast);
-	font-family: var(--wp--preset--font-family--primary);
+	font-family: "aktiv-grotesk", sans-serif;
 	font-size: var(--wp--preset--font-size--medium);
 	font-weight: var(--wp--custom--font-weight--light);
 	line-height: var(--wp--custom--line-height--body);
@@ -116,6 +123,10 @@ textarea {
 
 /* -- Navigation -- */
 
+.wp-block-navigation {
+	font-family: "aktiv-grotesk", sans-serif;
+}
+
 .wp-block-navigation__responsive-container.is-menu-open {
 	padding: var(--wp--custom--spacing--gap);
 }
@@ -148,6 +159,33 @@ textarea {
 	padding: 2px 10px;
 }
 
+/* -- Site Title and Headings -- */
+.wp-block-site-title {
+	font-family: "aktiv-grotesk", sans-serif;
+	font-weight: var(--wp--custom--font-weight--bold);
+}
+
+.wp-block-post-title {
+	font-family: "aktiv-grotesk", sans-serif;
+}
+
+/* -- Buttons -- */
+.wp-block-button__link,
+.wp-element-button {
+	font-family: "aktiv-grotesk", sans-serif;
+	font-weight: var(--wp--custom--font-weight--regular);
+}
+
+/* Links */
+a {
+	color: var(--wp--preset--color--dragons-lair);
+}
+
+a:hover,
+a:focus {
+	color: var(--wp--preset--color--uab-green);
+}
+
 /* Utility
 ---------------------------------------- */
 
@@ -159,6 +197,41 @@ textarea {
 
 .is-style-shadow-solid {
 	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* -- Thin Text -- */
+.is-style-thin-text {
+	font-family: "aktiv-grotesk-thin", sans-serif;
+	font-weight: var(--wp--custom--font-weight--thin);
+}
+
+/* Typekit class overrides
+---------------------------------------- */
+.tk-kulturista-web {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.tk-aktiv-grotesk {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.tk-aktiv-grotesk-thin {
+    font-family: "aktiv-grotesk-thin", sans-serif;
+}
+
+/* Custom UAB styles
+---------------------------------------- */
+.uab-button {
+    background-color: var(--wp--preset--color--uab-green);
+    color: var(--wp--preset--color--base);
+}
+
+.uab-button:hover {
+    background-color: var(--wp--preset--color--dragons-lair);
+}
+
+.uab-accent-text {
+    color: var(--wp--preset--color--uab-green);
 }
 
 /* Media Queries
@@ -182,4 +255,21 @@ textarea {
 		flex-direction: column-reverse;
 	}
 
+}
+
+/* Editor specific styles
+---------------------------------------- */
+.editor-styles-wrapper {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6,
+.editor-styles-wrapper .wp-block-site-title,
+.editor-styles-wrapper .wp-block-post-title {
+    font-family: "aktiv-grotesk", sans-serif;
 }
