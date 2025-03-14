@@ -66,6 +66,44 @@ mark {
 	background-size: 100% 15%;
 }
 
+/* Font size classes
+---------------------------------------- */
+.has-max-72-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 72px;
+}
+
+.has-max-60-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 60px;
+}
+
+.has-max-48-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 48px;
+}
+
+.has-max-36-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-size: 36px;
+}
+
+.has-x-large-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.has-large-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.has-medium-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
+.has-small-font-size {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
 /* -- Forms -- */
 
 input,
@@ -160,7 +198,8 @@ textarea {
 }
 
 /* -- Site Title and Headings -- */
-.wp-block-site-title {
+.wp-block-site-title,
+.wp-block-heading {
 	font-family: "aktiv-grotesk", sans-serif;
 	font-weight: var(--wp--custom--font-weight--bold);
 }
@@ -169,11 +208,29 @@ textarea {
 	font-family: "aktiv-grotesk", sans-serif;
 }
 
+.wp-block-heading h1,
+.wp-block-heading h2,
+.wp-block-heading h3,
+.wp-block-heading h4,
+.wp-block-heading h5,
+.wp-block-heading h6 {
+    font-family: "aktiv-grotesk", sans-serif;
+}
+
 /* -- Buttons -- */
 .wp-block-button__link,
-.wp-element-button {
+.wp-element-button,
+.wp-block-button .wp-block-button__link,
+.wp-block-button .wp-element-button {
 	font-family: "aktiv-grotesk", sans-serif;
 	font-weight: var(--wp--custom--font-weight--regular);
+	background-color: var(--wp--preset--color--uab-green);
+	color: var(--wp--preset--color--base);
+}
+
+.wp-block-button__link:hover,
+.wp-element-button:hover {
+    background-color: var(--wp--preset--color--dragons-lair);
 }
 
 /* Links */
@@ -205,18 +262,24 @@ a:focus {
 	font-weight: var(--wp--custom--font-weight--thin);
 }
 
-/* Typekit class overrides
----------------------------------------- */
-.tk-kulturista-web {
-    font-family: "aktiv-grotesk", sans-serif;
+/* Custom Font Classes */
+.use-kulturista,
+.use-kulturista h1,
+.use-kulturista h2,
+.use-kulturista h3,
+.use-kulturista h4,
+.use-kulturista h5,
+.use-kulturista h6 {
+    font-family: "kulturista-web", serif;
 }
 
-.tk-aktiv-grotesk {
-    font-family: "aktiv-grotesk", sans-serif;
-}
-
-.tk-aktiv-grotesk-thin {
-    font-family: "aktiv-grotesk-thin", sans-serif;
+.use-kulturista-headings h1,
+.use-kulturista-headings h2,
+.use-kulturista-headings h3,
+.use-kulturista-headings h4,
+.use-kulturista-headings h5,
+.use-kulturista-headings h6 {
+    font-family: "kulturista-web", serif;
 }
 
 /* Custom UAB styles
@@ -238,38 +301,61 @@ a:focus {
 ---------------------------------------- */
 
 @media only screen and (max-width: 600px) {
-
 	/* -- Utility -- */
-
 	.is-style-hidden-mobile {
 		display: none !important;
 	}
-
 }
 
 @media only screen and (max-width: 782px) {
-
 	/* -- Columns -- */
-
 	.is-style-columns-reverse {
 		flex-direction: column-reverse;
 	}
-
 }
 
-/* Editor specific styles
----------------------------------------- */
-.editor-styles-wrapper {
-    font-family: "aktiv-grotesk", sans-serif;
+/* Admin Bar Icon Fixes */
+#wpadminbar .ab-icon,
+#wpadminbar .ab-item:before,
+#wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon {
+    font: normal 20px/1 dashicons !important;
+    padding: 4px 0;
+    height: 34px;
+    width: 20px;
+    display: inline-block;
 }
 
-.editor-styles-wrapper h1,
-.editor-styles-wrapper h2,
-.editor-styles-wrapper h3,
-.editor-styles-wrapper h4,
-.editor-styles-wrapper h5,
-.editor-styles-wrapper h6,
-.editor-styles-wrapper .wp-block-site-title,
-.editor-styles-wrapper .wp-block-post-title {
-    font-family: "aktiv-grotesk", sans-serif;
+#wpadminbar #adminbarsearch:before, 
+#wpadminbar .ab-icon:before, 
+#wpadminbar .ab-item:before {
+    color: #a7aaad;
+    position: relative;
+    transition: all .1s ease-in-out;
+}
+
+/* Fix for specific admin bar items */
+#wpadminbar #wp-admin-bar-new-content .ab-icon:before {
+    content: "\f132";
+    top: 2px;
+}
+
+#wpadminbar #wp-admin-bar-comments .ab-icon:before {
+    content: "\f101";
+    top: 2px;
+}
+
+/* Dashboard icon */
+#wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+    content: "\f226";
+}
+
+/* Override any font-family settings for admin bar */
+#wpadminbar * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+}
+
+/* Make sure dashicons font is loaded */
+@font-face {
+    font-family: dashicons;
+    src: url(/wp-includes/fonts/dashicons.woff);
 }

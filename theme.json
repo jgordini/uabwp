@@ -229,7 +229,12 @@
 				{
 					"fontFamily": "aktiv-grotesk, sans-serif",
 					"name": "Aktiv Grotesk",
-					"slug": "primary"
+					"slug": "aktiv-grotesk"
+				},
+				{
+					"fontFamily": "kulturista-web, serif",
+					"name": "Kulturista",
+					"slug": "kulturista"
 				},
 				{
 					"fontFamily": "aktiv-grotesk-thin, sans-serif",
@@ -645,6 +650,7 @@
 			},
 			"heading": {
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--aktiv-grotesk)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"lineHeight": "var(--wp--custom--line-height--heading)"
 				}
@@ -670,7 +676,7 @@
 			}
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--primary)",
+			"fontFamily": "var(--wp--preset--font-family--aktiv-grotesk)",
 			"fontSize": "var(--wp--preset--font-size--medium)",
 			"fontWeight": "var(--wp--custom--font-weight--light)",
 			"lineHeight": "var(--wp--custom--line-height--body)"

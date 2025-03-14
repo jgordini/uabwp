@@ -26,12 +26,6 @@ if ( ! function_exists( 'uabwp_setup' ) ) {
 		// Make theme available for translation.
 		load_theme_textdomain( 'uabwp', get_template_directory() . '/languages' );
 
-		// Enqueue editor stylesheet.
-		add_editor_style( array(
-            'https://use.typekit.net/yvz8uhi.css',
-            get_template_directory_uri() . '/style.css'
-        ));
-
 		// Remove core block patterns.
 		remove_theme_support( 'core-block-patterns' );
 
@@ -54,10 +48,12 @@ function uabwp_enqueue_stylesheet() {
  */
 function uabwp_add_inline_styles() {
     $inline_css = "
-        body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, select, textarea, .wp-block-site-title, .wp-block-post-title {
+        /* Base font style */
+        body {
             font-family: 'aktiv-grotesk', sans-serif;
         }
         
+        /* Button styling */
         .wp-block-button__link, 
         .wp-element-button {
             background-color: var(--wp--preset--color--uab-green);
@@ -69,6 +65,7 @@ function uabwp_add_inline_styles() {
             background-color: var(--wp--preset--color--dragons-lair);
         }
         
+        /* Link styling */
         a {
             color: var(--wp--preset--color--dragons-lair);
         }
@@ -82,48 +79,56 @@ function uabwp_add_inline_styles() {
 add_action('wp_enqueue_scripts', 'uabwp_add_inline_styles', 20);
 
 /**
- * Enqueue Adobe Fonts (Typekit) in the editor.
+ * Enqueue block editor assets.
  */
-function uabwp_enqueue_editor_assets() {
-    // Specifically for the block editor
+function uabwp_enqueue_block_editor_assets() {
+    // Enqueue the Typekit fonts in the editor
     wp_enqueue_style('adobe-fonts-editor', 'https://use.typekit.net/yvz8uhi.css', array(), null);
     
-    // Add additional inline CSS for the editor
-    $editor_css = "
-        .editor-styles-wrapper, 
-        .editor-styles-wrapper h1,
-        .editor-styles-wrapper h2,
-        .editor-styles-wrapper h3,
-        .editor-styles-wrapper h4,
-        .editor-styles-wrapper h5,
-        .editor-styles-wrapper h6,
-        .editor-styles-wrapper p,
-        .editor-styles-wrapper span,
-        .editor-styles-wrapper div,
-        .editor-styles-wrapper a,
-        .editor-styles-wrapper button,
-        .editor-styles-wrapper input,
-        .editor-styles-wrapper select,
-        .editor-styles-wrapper textarea,
-        .editor-styles-wrapper .wp-block-site-title,
-        .editor-styles-wrapper .wp-block-post-title,
-        .block-editor-block-list__block {
+    // Create a dedicated editor styles file
+    wp_enqueue_style(
+        'uabwp-editor-styles',
+        get_theme_file_uri('css/editor-styles.css'),
+        array('wp-edit-blocks'),
+        wp_get_theme()->get('Version')
+    );
+    
+    // Add critical inline styles for the editor
+    $editor_inline_css = "
+        /* Base font styles for editor */
+        .editor-styles-wrapper {
             font-family: 'aktiv-grotesk', sans-serif;
         }
         
+        /* Button styles in editor */
+        .wp-block-button__link, 
+        .wp-element-button {
+            background-color: var(--wp--preset--color--uab-green);
+            color: var(--wp--preset--color--base);
+            font-family: 'aktiv-grotesk', sans-serif;
+        }
+        
+        /* Link styles in editor */
         .editor-styles-wrapper a {
             color: var(--wp--preset--color--dragons-lair);
         }
-        
-        .editor-styles-wrapper .wp-block-button__link, 
-        .editor-styles-wrapper .wp-element-button {
-            background-color: var(--wp--preset--color--uab-green);
-            color: var(--wp--preset--color--base);
-        }
     ";
-    wp_add_inline_style('wp-edit-blocks', $editor_css);
+    wp_add_inline_style('uabwp-editor-styles', $editor_inline_css);
 }
-add_action('enqueue_block_editor_assets', 'uabwp_enqueue_editor_assets');
+add_action('enqueue_block_editor_assets', 'uabwp_enqueue_block_editor_assets');
+
+/**
+ * Add custom editor styles
+ */
+function uabwp_add_editor_styles() {
+    // Add Typekit stylesheet and custom styles to the editor
+    add_editor_style( array(
+        'https://use.typekit.net/yvz8uhi.css',
+        'css/editor-styles.css',
+        'style.css'
+    ) );
+}
+add_action('after_setup_theme', 'uabwp_add_editor_styles');
 
 /**
  * Register block styles.
@@ -153,6 +158,10 @@ function uabwp_register_block_styles() {
 		'core/paragraph' => array(
 			'thin-text' => __( 'Thin Text', 'uabwp' ),
 		),
+		'core/group' => array(
+            'use-kulturista' => __( 'Use Kulturista Font', 'uabwp' ),
+            'use-kulturista-headings' => __( 'Kulturista Headings Only', 'uabwp' ),
+        ),
 	);
 
 	foreach ( $block_styles as $block => $styles ) {
